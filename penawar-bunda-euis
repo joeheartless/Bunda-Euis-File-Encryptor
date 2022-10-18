@@ -1,6 +1,6 @@
 #!/bin/bash
 # BUNDA-EUIS File Decryptor v.1
-# Created by Joe Heartless
+# Created by Prima Setiawan / Joe Heartless
 
 bassess="b2472f29989161e34fa960509ab9e732" # <-- Input your md5sum
 echo -n "Enter password to decrypt files: "
