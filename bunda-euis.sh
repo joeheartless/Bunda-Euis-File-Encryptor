@@ -1,6 +1,6 @@
 #!/bin/bash
 # BUNDA-EUIS File Encryptor v.1
-# Created by Joe Heartless
+# Created by Prima Setiawan / Joe Heartless
 
 # echo -n "[Insert password to protect files:] " # <-- Manual input password openssl -k
 # read passwed
