@@ -1,24 +1,29 @@
 #!/bin/bash
 # BUNDA-EUIS File Decryptor v.1
-# Created by Prima Setiawan / joehearless
+# Created by Prima Setiawan / joeheartless
 
-bassess="b2472f29989161e34fa960509ab9e732" # <-- Input your md5sum pass
 echo -n "Enter password to decrypt files: "
-read passwed
-p1=`echo $passwed | md5sum | cut -d' ' -f1`
-if [ "$p1" == "$bassess" ]; then
-		file=$(ls -f *.*)
-		i=1
-		for enc in $file
-		do
-        	echo "[$i] Restoring file Un$enc ..."
-        	openssl enc -d -aes-256-cbc -in $enc -out Un$enc -pbkdf2 -k bundaeuisgeulis #<--- Password encrypt & decrypt
-        	file[i]=$enc
-        	i=$(( i + 1 ))
-		done
-		sleep 1
-		rm -rf $file #Bahaya
-else
-	echo "Wrong password, open README.txt file."
-fi
+read -s passwed
+echo ""
+
+echo "Password received! Starting decryption..."
+
+# Cari semua file yang terenkripsi (bunda.*)
+file_list=$(find . -maxdepth 1 -type f -name "bunda.*")
+
+i=1
+for enc in $file_list; do
+    original_name="${enc#bunda.}" # Hapus prefix "bunda." buat restore nama asli
+    output_file="Un$original_name"
+    
+    if openssl enc -d -aes-256-cbc -in "$enc" -out "$output_file" -pbkdf2 -k "$passwed"; then
+        echo "[$i] Restored file: $output_file"
+        rm -f "$enc"  # Hapus file terenkripsi setelah sukses dekripsi
+    else
+        echo "[ERROR] Gagal dekripsi $enc!"
+    fi
+    
+    i=$((i + 1))
+done
+
 
