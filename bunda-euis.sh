@@ -14,7 +14,7 @@ for enc in $file_list; do
     openssl enc -aes-256-cbc -in "$enc" -out "bunda.$enc" -pbkdf2 -k "$pass"
     
     # Hapus file original setelah dienkripsi
-    rm -f "$enc"
+    rm -f $file
     
     i=$((i + 1))
 done
